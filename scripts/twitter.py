@@ -1,6 +1,5 @@
-#Import the necessary methods from tweepy library
 import json
-import pandas as pd
+import tweepy
 
 from tweepy.streaming import StreamListener
 from tweepy import OAuthHandler
@@ -12,23 +11,39 @@ access_token_secret = "Eg6CJE9nkTPIHGTa0m1WBGUhd7GqZjMyTUkVsBnql5NxZ"
 consumer_key = "w01zE83UD0sGGWukEgpUitoep"
 consumer_secret = "tARyuJvmBIZlCrgygzfgY1SmzpymLYMJcZL5o4eQ7JVf72U403"
 
-#This is a basic listener that just prints received tweets to stdout.
-class StdOutListener(StreamListener):
-
-    def on_data(self, data):
-        print data
-        return True
-
-    def on_error(self, status):
-        print status
-
 if __name__ == '__main__':
 
-    #This handles Twitter authetification and the connection to Twitter Streaming API
-    l = StdOutListener()
     auth = OAuthHandler(consumer_key, consumer_secret)
     auth.set_access_token(access_token, access_token_secret)
-    stream = Stream(auth, l)
 
-    #This line filter Twitter Streams to capture data by the keywords: 'python', 'javascript', 'ruby'
-    stream.filter(track=['python', 'javascript', 'ruby'])
+    # calling the api
+    api = tweepy.API(auth, wait_on_rate_limit=True, wait_on_rate_limit_notify=True)
+
+    # the screen_name of the targeted user 
+    screen_name = "elonmusk"
+
+    # fetching the user 
+    user = api.get_user(screen_name) 
+
+    # fetch the user id
+    user_id = user.id_str
+
+    # extract the latest 600 tweets from elon
+    n = 0
+    while n < 3:
+        tweets = api.user_timeline(
+            user_id=user_id,
+            screen_name=screen_name,
+            count=200,
+            include_rts=False,
+            exclude_replies=True,
+            tweet_mode='extended'
+        )
+        
+        for info in tweets:
+            print("ID: {}".format(info.id))
+            print(info.created_at)
+            print(info.full_text.encode('utf-8'))
+            print("\n")
+
+        n += 1
