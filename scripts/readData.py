@@ -1,21 +1,24 @@
-# How to run: python readData.py
-
 import json
 import sys
 import pandas as pd
-  
 
 pd.set_option('max_colwidth',1000)
-# pd.set_option('max_rowwidth',1000)
 
-tweets_data_path = '../data/tweetRaw'
+# set output path
+output_path = '../data/tweetParsed'
+sys.stdout = open(output_path, 'w')
 
+# set input path
+input_path = '../data/tweetRaw'
+
+# open file
 tweets_data = []
 try:
-    tweets_file = open(tweets_data_path, "r")
+    tweets_file = open(input_path, "r")
 except IOError:
     print "Error: can't open file"
 
+# read into json format
 for line in tweets_file:
     try:
         tweet = json.loads(line)
@@ -23,6 +26,14 @@ for line in tweets_file:
     except:
         continue
 
+# use pandas to format data
 tweets = pd.DataFrame()
-tweets['text'] = map(lambda tweet: tweet['text'], tweets_data)
-print(tweets['text'].values[0].encode('utf-8'))
+tweets['text'] = map(lambda tweet: tweet['extended_tweet']['full_text'] if tweet['truncated'] else tweet['text'], tweets_data)
+
+# extract all text
+i = 0
+while i < len(tweets_data):
+    text = tweets['text'].values[i].encode('utf-8').replace("\n", ". ") # remove line breakers
+    if text[0:2] != 'RT':
+        print(text + '\n')
+    i += 1

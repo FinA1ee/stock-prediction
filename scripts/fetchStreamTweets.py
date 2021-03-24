@@ -13,9 +13,6 @@ access_token_secret = "Eg6CJE9nkTPIHGTa0m1WBGUhd7GqZjMyTUkVsBnql5NxZ"
 consumer_key = "w01zE83UD0sGGWukEgpUitoep"
 consumer_secret = "tARyuJvmBIZlCrgygzfgY1SmzpymLYMJcZL5o4eQ7JVf72U403"
 
-output_path = '../data/tweetRaw'
-sys.stdout = open(path, 'w')
-
 class StdOutListener(StreamListener):
 
     def on_data(self, data):
@@ -23,16 +20,37 @@ class StdOutListener(StreamListener):
         return True
 
     def on_error(self, status):
-        print status
+        print(status)
 
 if __name__ == '__main__':
 
+    # set runtime
+    runtime = 10
+    if len(sys.argv) == 2:
+        runtime = int(sys.argv[1])
+        if runtime < 1 or runtime > 100:
+            print("Bad Running time")
+            sys.exit(1)
+    elif len(sys.argv) > 2:
+        print("Wrong Number of Arguments")
+        sys.exit(1)
+
+    # set output path
+    output_path = '../data/tweetRaw'
+    sys.stdout = open(output_path, 'w')
+
+    # add listener
     l = StdOutListener()
+
+    # create stream
     auth = OAuthHandler(consumer_key, consumer_secret)
     auth.set_access_token(access_token, access_token_secret)
     stream = Stream(auth, l, tweet_mode='extended')
-    #This line filter Twitter Streams to capture data by the keywords: 'python', 'javascript', 'ruby'
-    stream.filter(track=['tesla', 'elonmusk'])
+
+    # filter on key words
+    stream.filter(track=['tesla', 'elonmusk', 'spacex', 'elon', 'musk'], is_async=True)
+    time.sleep(runtime)
+    stream.disconnect()
 
     # # calling the api
     # api = tweepy.API(auth, wait_on_rate_limit=True, wait_on_rate_limit_notify=True)
