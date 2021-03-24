@@ -1,6 +1,7 @@
 import json
 import tweepy
 import time
+import sys
 
 from tweepy.streaming import StreamListener
 from tweepy import OAuthHandler
@@ -11,6 +12,9 @@ access_token = "950545014542741504-uToPAGQNxW5GWYcEhVmSl1HZiRYbKVM"
 access_token_secret = "Eg6CJE9nkTPIHGTa0m1WBGUhd7GqZjMyTUkVsBnql5NxZ"
 consumer_key = "w01zE83UD0sGGWukEgpUitoep"
 consumer_secret = "tARyuJvmBIZlCrgygzfgY1SmzpymLYMJcZL5o4eQ7JVf72U403"
+
+output_path = '../data/tweetRaw'
+sys.stdout = open(path, 'w')
 
 class StdOutListener(StreamListener):
 
@@ -26,7 +30,7 @@ if __name__ == '__main__':
     l = StdOutListener()
     auth = OAuthHandler(consumer_key, consumer_secret)
     auth.set_access_token(access_token, access_token_secret)
-    stream = Stream(auth, l)
+    stream = Stream(auth, l, tweet_mode='extended')
     #This line filter Twitter Streams to capture data by the keywords: 'python', 'javascript', 'ruby'
     stream.filter(track=['tesla', 'elonmusk'])
 
