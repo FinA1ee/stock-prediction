@@ -29,20 +29,18 @@ for line in tweets_file:
 
 # use pandas to format data
 tweets = pd.DataFrame()
-outtweets = [[tweet['created_at'], 
-              tweet['extended_tweet']['full_text'].encode('utf-8') if tweet['truncated'] else tweet['text'].encode('utf-8')]
-             for tweet in tweets_data]
+# outtweets = [[tweet['created_at'], 
+#               tweet['extended_tweet']['full_text'].encode('utf-8') if tweet['truncated'] else tweet['text'].encode('utf-8')]
+#              for tweet in tweets_data]
 
-# tweets['id'] = map(lambda tweet: tweet['id'], tweets_data)
-# tweets['created_at'] = map(lambda tweet: tweet['created_at'], tweets_data)
-# tweets['favorite_count'] = map(lambda tweet: tweet['favorite_count'], tweets_data)
-# tweets['retweet_count'] = map(lambda tweet: tweet['retweet_count'], tweets_data)
-# tweets['text'] = map(lambda tweet: tweet['extended_tweet']['full_text'].encode('utf-8') if tweet['truncated'] else tweet['text'].encode('utf-8'), tweets_data)
+tweets['id'] = map(lambda tweet: tweet['id'], tweets_data)
+tweets['created_at'] = map(lambda tweet: tweet['created_at'], tweets_data)
+tweets['favorite_count'] = map(lambda tweet: tweet['favorite_count'], tweets_data)
+tweets['retweet_count'] = map(lambda tweet: tweet['retweet_count'], tweets_data)
+tweets['text'] = map(lambda tweet: tweet['extended_tweet']['full_text'].encode('utf-8') if tweet['truncated'] else tweet['text'].encode('utf-8'), tweets_data)
 
-df = pd.DataFrame(outtweets,columns=["created_at", "text"])
-# pd.DataFrame({'text':[longString]})
-df.to_csv('tweets.csv',index=False)
-print(df)
+df = pd.DataFrame(tweets,columns=["id", "created_at", "favorite_count", "retweet_count", "text"])
+df.to_csv('tweetsParsed.csv',index=False)
 
 # extract all text
 # i = 0
