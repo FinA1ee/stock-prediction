@@ -28,7 +28,7 @@ if __name__ == '__main__':
     runtime = 10
     if len(sys.argv) == 2:
         runtime = int(sys.argv[1])
-        if runtime < 1 or runtime > 100:
+        if runtime < 1 or runtime > 1000:
             print("Bad Running time")
             sys.exit(1)
     elif len(sys.argv) > 2:
