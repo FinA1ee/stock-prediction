@@ -2,8 +2,8 @@
 
 Instructions:
 
-1. Run $ python fetchStreamTweets ['runtime'] (runtime must be an integer in range [1, 100])
-2. Run $ python readData
+1. Run $ python fetchStreamTweets.py ['runtime'] (runtime must be an integer in range [1, 100])
+2. Run $ python readData.py
 
 Functionality:
 
