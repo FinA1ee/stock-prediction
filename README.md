@@ -36,3 +36,15 @@
   - change `interval` if you want to extract with different frequencies (ie, stock price change every minute/ hour/ etc.)
 
   - Run in main directory `/stock_prediction`, and output `stock_data.csv` file will be in `/data` folder
+
+- `pandas_predict.py`
+
+  - debug purpose, use it to test ml framework without pyspark
+
+  - change absolute path to relative path accordingly
+
+- `pyspark_predict.py`
+
+  - change `global_setup` part to debug
+
+  - change absolute path to relative path accordingly
