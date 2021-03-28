@@ -1,18 +1,27 @@
 # stock-prediction
 
-Instructions:
-
-1. Run $ python fetchStreamTweets.py ['runtime'] (runtime must be an integer in range [1, 100])
-2. Run $ python readData.py
-
-Functionality:
-
-Streaming all tweets with certain keywords for a period of time,
-parse and extract the content text, store them in ../data/tweetParsed.
-
-
-
 #### Scripts
+
+- `fetch_stream_tweets.py`
+
+  uses `tweepy` library to extract streaming tweeter data for a certain period of time
+
+  ```
+  pip install tweepy
+  python scripts/fetch_stream_tweets.py `runtime`
+  ```
+
+  - Run in main directory `/stock_prediction` , and output `tweet_data_raw` file will be in `/data` folder
+
+- `read_stream_tweets.py`
+
+  uses `pandas` library to read and parse the tweeter data and outputs a csv file
+
+  ```
+  python scripts/read_stream_tweets.py
+  ```
+
+  - Run in main directory `/stock_prediction` , and output `tweet_data_parsed.csv` file will be in `/data` folder
 
 - `extract_stock.py`
 
@@ -27,7 +36,3 @@ parse and extract the content text, store them in ../data/tweetParsed.
   - change `interval` if you want to extract with different frequencies (ie, stock price change every minute/ hour/ etc.)
 
   - Run in main directory `/stock_prediction`, and output `stock_data.csv` file will be in `/data` folder
-
-  
-
-  
