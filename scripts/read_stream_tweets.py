@@ -5,12 +5,8 @@ import pandas as pd
 pd.set_option('display.max_colwidth', -1)
 pd.set_option('display.max_row', 1000)
 
-# set output path
-output_path = '../data/tweetParsed.csv'
-sys.stdout = open(output_path, 'w')
-
 # set input path
-input_path = '../data/tweetRaw'
+input_path = 'data/tweet_data_raw'
 
 # open file
 tweets_data = []
@@ -40,7 +36,7 @@ tweets['retweet_count'] = map(lambda tweet: tweet['retweet_count'], tweets_data)
 tweets['text'] = map(lambda tweet: tweet['extended_tweet']['full_text'].encode('utf-8') if tweet['truncated'] else tweet['text'].encode('utf-8'), tweets_data)
 
 df = pd.DataFrame(tweets,columns=["id", "created_at", "favorite_count", "retweet_count", "text"])
-df.to_csv('tweetsParsed.csv',index=False)
+df.to_csv("data/tweet_data_parsed.csv",index=False)
 
 # extract all text
 # i = 0
