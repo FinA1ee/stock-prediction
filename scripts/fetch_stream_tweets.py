@@ -16,6 +16,8 @@ access_token_secret = "Eg6CJE9nkTPIHGTa0m1WBGUhd7GqZjMyTUkVsBnql5NxZ"
 consumer_key = "w01zE83UD0sGGWukEgpUitoep"
 consumer_secret = "tARyuJvmBIZlCrgygzfgY1SmzpymLYMJcZL5o4eQ7JVf72U403"
 
+keywords = ['#tesla', '#spacex', '#elon', '#elonmusk', '#autopilot', 'tesla', 'elon', 'spacex, autopilot']
+
 class StdOutListener(StreamListener):
 
     def on_data(self, data):
@@ -28,10 +30,10 @@ class StdOutListener(StreamListener):
 if __name__ == '__main__':
 
     # set runtime
-    runtime = 30
+    runtime = 60
     if len(sys.argv) == 2:
         runtime = int(sys.argv[1])
-        if runtime < 1 or runtime > 1000:
+        if runtime < 1 or runtime > 10000:
             print("Bad Running time")
             sys.exit(1)
     elif len(sys.argv) > 2:
@@ -51,6 +53,6 @@ if __name__ == '__main__':
     stream = Stream(auth, l, tweet_mode='extended')
 
     # filter on key words
-    stream.filter(track=['tesla', 'elonmusk', 'spacex', 'elon', 'musk'], is_async=True)
+    stream.filter(track=keywords, is_async=True)
     time.sleep(runtime)
     stream.disconnect()
