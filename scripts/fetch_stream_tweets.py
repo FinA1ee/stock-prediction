@@ -53,6 +53,9 @@ if __name__ == '__main__':
     stream = Stream(auth, l, tweet_mode='extended')
 
     # filter on key words
-    stream.filter(track=keywords, is_async=True)
+    try:
+        stream.filter(track=keywords, is_async=True)
+    except:
+        sys.exit()
     time.sleep(runtime)
     stream.disconnect()
