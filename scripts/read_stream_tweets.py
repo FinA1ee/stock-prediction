@@ -56,6 +56,8 @@ for id in tweet_ids:
     except:
         continue
 
+# parse emoji
+
 # print info
 i = 0
 while i < size:
