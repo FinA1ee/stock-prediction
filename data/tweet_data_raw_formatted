@@ -1,0 +1,307 @@
+{"created_at":"Thu Apr 01 02:36:20 +0000 2021",
+
+"id":1377449721510440960,
+
+"id_str":"1377449721510440960",
+
+"text":"RT @CryoCrypto: @elonmusk When #Holochain hits $1.00 - I'll buy a #Tesla Model S plaid.  Are you involved yet?",
+
+"source":"\u003ca href=\"http:\/\/twitter.com\/download\/iphone\" rel=\"nofollow\"\u003eTwitter for iPhone\u003c\/a\u003e",
+
+"truncated":false,
+
+"in_reply_to_status_id":null,
+
+"in_reply_to_status_id_str":null,
+
+"in_reply_to_user_id":null,
+
+"in_reply_to_user_id_str":null,
+
+"in_reply_to_screen_name":null,
+
+"user":
+	{"id":1070214840,
+
+	"id_str":"1070214840",
+
+	"name":"CRYpto  \u20bfatman",
+
+	"screen_name":"LOLpundit007",
+
+	"location":"United Kingdom",
+
+	"url":null,
+
+	"description":"ETH : 0x5c7790fe34144b6c69695a0a64d5909b21d0371a  BTC : 1CbztrkfkivotuAVRJN8JmJ9qQU2XTYZfk \nNEO : AT8cXv42k3sLjtvi24CBXPru14frXDfcw5",
+
+	"translator_type":"none",
+
+	"protected":false,
+
+	"verified":false,
+
+	"followers_count":1752,
+
+	"friends_count":2562,
+
+	"listed_count":50,
+
+	"favourites_count":66708,
+
+	"statuses_count":79300,
+
+	"created_at":"Tue Jan 08 07:18:58 +0000 2013",
+
+	"utc_offset":null,
+
+	"time_zone":null,
+
+	"geo_enabled":false,
+
+	"lang":null,
+
+	"contributors_enabled":false,
+
+	"is_translator":false,
+
+	"profile_background_color":"000000",
+
+	"profile_background_image_url":"http:\/\/abs.twimg.com\/images\/themes\/theme1\/bg.png",
+
+	"profile_background_image_url_https":"https:\/\/abs.twimg.com\/images\/themes\/theme1\/bg.png",
+
+	"profile_background_tile":false,
+
+	"profile_link_color":"981CEB",
+
+	"profile_sidebar_border_color":"000000",
+
+	"profile_sidebar_fill_color":"000000",
+
+	"profile_text_color":"000000",
+
+	"profile_use_background_image":false,
+
+	"profile_image_url":"http:\/\/pbs.twimg.com\/profile_images\/1064883993357811712\/OfZDkN9u_normal.jpg",
+
+	"profile_image_url_https":"https:\/\/pbs.twimg.com\/profile_images\/1064883993357811712\/OfZDkN9u_normal.jpg",
+
+	"profile_banner_url":"https:\/\/pbs.twimg.com\/profile_banners\/1070214840\/1503520797",
+
+	"default_profile":false,
+
+	"default_profile_image":false,
+
+	"following":null,
+
+	"follow_request_sent":null,
+
+	"notifications":null},
+
+	"geo":null,
+
+	"coordinates":null,
+
+	"place":null,
+
+	"contributors":null,
+
+	"retweeted_status":
+		{"created_at":"Tue Mar 30 20:51:24 +0000 2021",
+
+		"id":1377000528585052160,
+
+		"id_str":"1377000528585052160",
+
+		"text":"@elonmusk When #Holochain hits $1.00 - I'll buy a #Tesla Model S plaid.  Are you involved yet?",
+
+		"source":"\u003ca href=\"http:\/\/twitter.com\/download\/iphone\" rel=\"nofollow\"\u003eTwitter for iPhone\u003c\/a\u003e",
+
+		"truncated":false,
+
+		"in_reply_to_status_id":null,
+
+		"in_reply_to_status_id_str":null,
+
+		"in_reply_to_user_id":44196397,
+
+		"in_reply_to_user_id_str":"44196397",
+
+		"in_reply_to_screen_name":"elonmusk",
+
+		"user":{
+			"id":1073999808778698752,
+
+			"id_str":"1073999808778698752",
+
+			"name":"Crypto News",
+
+			"screen_name":"CryoCrypto",
+
+			"location":"Deutschland",
+
+			"url":null,
+
+			"description":"Information about cryptocurrencies (digital assets) and their way to mainstream.  No financial advice!",
+
+			"translator_type":"none",
+
+			"protected":false,
+
+			"verified":false,
+
+			"followers_count":502,
+
+			"friends_count":109,
+
+			"listed_count":3,
+
+			"favourites_count":649,
+
+			"statuses_count":859,
+
+			"created_at":"Sat Dec 15 17:54:43 +0000 2018",
+
+			"utc_offset":null,
+
+			"time_zone":null,
+
+			"geo_enabled":false,
+
+			"lang":null,
+
+			"contributors_enabled":false,
+
+			"is_translator":false,
+
+			"profile_background_color":"000000",
+
+			"profile_background_image_url":"http:\/\/abs.twimg.com\/images\/themes\/theme1\/bg.png",
+
+			"profile_background_image_url_https":"https:\/\/abs.twimg.com\/images\/themes\/theme1\/bg.png",
+
+			"profile_background_tile":false,
+
+			"profile_link_color":"ABB8C2",
+
+			"profile_sidebar_border_color":"000000",
+
+			"profile_sidebar_fill_color":"000000",
+
+			"profile_text_color":"000000",
+
+			"profile_use_background_image":false,
+
+			"profile_image_url":"http:\/\/pbs.twimg.com\/profile_images\/1151495132283375618\/5FFq4Sir_normal.jpg",
+
+			"profile_image_url_https":"https:\/\/pbs.twimg.com\/profile_images\/1151495132283375618\/5FFq4Sir_normal.jpg",
+
+			"profile_banner_url":"https:\/\/pbs.twimg.com\/profile_banners\/1073999808778698752\/1563372809",
+
+			"default_profile":false,
+
+			"default_profile_image":false,
+
+			"following":null,
+
+			"follow_request_sent":null,
+
+			"notifications":null
+			},
+
+		"geo":null,
+
+		"coordinates":null,
+
+		"place":null,
+
+		"contributors":null,
+
+		"is_quote_status":false,
+
+		"quote_count":1,
+
+		"reply_count":4,
+
+		"retweet_count":8,
+
+		"favorite_count":39,
+
+		"entities":
+			{"hashtags":[
+				{"text":"Holochain","indices":[15,25]},
+				{"text":"Tesla","indices":[50,56]}
+				],
+
+			"urls":[],
+
+			"user_mentions":[
+				{"screen_name":"elonmusk",
+				"name":"Elon Musk",
+				"id":44196397,
+				"id_str":"44196397",
+				"indices":[0,9]}
+				],
+
+			"symbols":[]
+			},
+
+		"favorited":false,
+
+		"retweeted":false,
+
+		"filter_level":"low",
+
+		"lang":"en"},
+
+	"is_quote_status":false,
+
+	"quote_count":0,
+
+	"reply_count":0,
+
+	"retweet_count":0,
+
+	"favorite_count":0,
+
+	"entities":
+		{"hashtags":[
+			{"text":"Holochain",
+			"indices":[31,41]},
+
+			{"text":"Tesla",
+			"indices":[66,72]}
+			],
+
+		"urls":[],
+
+		"user_mentions":[
+			{"screen_name":"CryoCrypto",
+			"name":"Crypto News",
+			"id":1073999808778698752,
+			"id_str":"1073999808778698752",
+			"indices":[3,14]},
+
+			{"screen_name":"elonmusk",
+			"name":"Elon Musk",
+			"id":44196397,
+			"id_str":"44196397",
+			"indices":[16,25]}
+			],
+
+		"symbols":[]
+		},
+
+	"favorited":false,
+
+	"retweeted":false,
+
+	"filter_level":"low",
+
+	"lang":"en",
+
+	"timestamp_ms":"1617244580043"
+	}
+
+
