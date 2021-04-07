@@ -18,7 +18,6 @@ consumer_secret = "tARyuJvmBIZlCrgygzfgY1SmzpymLYMJcZL5o4eQ7JVf72U403"
 
 # keywords = ['#tesla', '#spacex', '#elon', '#elonmusk', '#autopilot', 'tesla', 'elon', 'spacex, autopilot']
 keywords = ['#teala', 'tesla']
-output_path = 'data/tweet_data_raw'
 
 class StdOutListener(StreamListener):
 
@@ -31,29 +30,27 @@ class StdOutListener(StreamListener):
 
 if __name__ == '__main__':
 
-    logging.basicConfig(level=logging.INFO)
-    logging.info("Script Running...")
+    logger = logging.getLogger("Fetch Script")
+    logger.setLevel(logging.INFO)
+    handler = logging.StreamHandler()
+    handler.setLevel(logging.DEBUG)
+    formatter = logging.Formatter('%(asctime)s - %(name)s - %(levelname)s - %(message)s')
+    handler.setFormatter(formatter)
+    logger.addHandler(handler)
 
-    # set runtime
-    runtime = 10
-    output_path = 'data/tweet_data_raw'
+    logger.info("Fetch Script Running...")
 
-    if len(sys.argv) > 3:
+    # parse arguments
+    if len(sys.argv) != 3:
         print("Wrong Number of Arguments")
         sys.exit(1)
-    
-    if len(sys.argv) == 3:
-        runtime = int(sys.argv[1])
-        output_path = str(sys.argv[2])
-    elif len(sys.argv) == 2:
-        runtime = int(sys.argv[1])
 
-
-    logging.info("Runtime: " + str(runtime))
-    logging.info("Output: " + output_path)
-
-    # set output path
+    runtime = int(sys.argv[1])
+    output_path = str(sys.argv[2])
     sys.stdout = open(output_path, 'w')
+
+    logger.info("Runtime: " + str(runtime))
+    logger.info("Output: " + output_path)
 
     # add listener
     l = StdOutListener()
@@ -70,6 +67,7 @@ if __name__ == '__main__':
         sys.exit()
     
     for i in range(runtime):
-        logging.info("Fetching..." + str(i))
+        logger.info("Fetching..." + str(i))
         time.sleep(1)
+
     stream.disconnect()
