@@ -45,18 +45,22 @@ tweet_dict['retweet_count'] = []
 tweet_dict['favorite_count'] = []
 
 # extract info from raw data 
+size = 0
 for id in tweet_ids:
     try:
         status = api.get_status(id)
         tweet_dict['text'].append(status.text)
         tweet_dict['retweet_count'].append(status.retweet_count)
         tweet_dict['favorite_count'].append(status.favorite_count)
+        size += 1
     except:
         continue
 
+# parse emoji
+
 # print info
 i = 0
-while i < len(tweet_ids):
+while i < size:
     likes = tweet_dict['favorite_count'][i]
     retweets = tweet_dict['retweet_count'][i]
     text = tweet_dict['text'][i].encode('utf-8').replace("\n", ". ") # remove line breakers
