@@ -1,8 +1,8 @@
 #!/bin/bash
 
 # Run scripts iter times for runtime secs
-let iter=2
-let runtime=3
+let iter=3
+let runtime=10
 
 baseFetchOutpath="data/tweetRaw/tweet_data_raw_"
 baseReadInpath="data/tweetRaw/tweet_data_raw_"

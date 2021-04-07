@@ -2,26 +2,27 @@
 
 #### Scripts
 
+- `twitter.sh`
+
+   ```
+   chmod +x twitter.sh
+   ./twitter.sh
+   ```
+
+   Set variable iter\runtime to adjust the running time/iteration of fetch/read scripts.
+   i.e if we fetch 60 min of data, sliced each 5 min, then runtime = 300, iteration = 12
+
+   The data produced are stored in data/tweetParsed, data/tweetRaw folders.
+
 - `fetch_stream_tweets.py`
 
   uses `tweepy` library to extract streaming tweeter data for a certain period of time
 
-  ```
-  pip install tweepy
-  python scripts/fetch_stream_tweets.py `runtime`
-  ```
-
-  - Run in main directory `/stock_prediction` , and output `tweet_data_raw` file will be in `/data` folder
 
 - `read_stream_tweets.py`
 
   uses `pandas` library to read and parse the tweeter data and outputs a csv file
 
-  ```
-  python scripts/read_stream_tweets.py
-  ```
-
-  - Run in main directory `/stock_prediction` , and output `tweet_data_parsed.csv` file will be in `/data` folder
 
 - `extract_stock.py`
 
