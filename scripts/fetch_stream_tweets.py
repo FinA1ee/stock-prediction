@@ -1,6 +1,6 @@
 # ensure that you already installed yfinance library
 # pip install tweepy
-
+import logging
 import json
 import tweepy
 import time
@@ -16,7 +16,9 @@ access_token_secret = "Eg6CJE9nkTPIHGTa0m1WBGUhd7GqZjMyTUkVsBnql5NxZ"
 consumer_key = "w01zE83UD0sGGWukEgpUitoep"
 consumer_secret = "tARyuJvmBIZlCrgygzfgY1SmzpymLYMJcZL5o4eQ7JVf72U403"
 
-keywords = ['#tesla', '#spacex', '#elon', '#elonmusk', '#autopilot', 'tesla', 'elon', 'spacex, autopilot']
+# keywords = ['#tesla', '#spacex', '#elon', '#elonmusk', '#autopilot', 'tesla', 'elon', 'spacex, autopilot']
+keywords = ['#teala', 'tesla']
+output_path = 'data/tweet_data_raw'
 
 class StdOutListener(StreamListener):
 
@@ -29,19 +31,28 @@ class StdOutListener(StreamListener):
 
 if __name__ == '__main__':
 
+    logging.basicConfig(level=logging.INFO)
+    logging.info("Script Running...")
+
     # set runtime
-    runtime = 60
-    if len(sys.argv) == 2:
-        runtime = int(sys.argv[1])
-        if runtime < 1 or runtime > 10000:
-            print("Bad Running time")
-            sys.exit(1)
-    elif len(sys.argv) > 2:
+    runtime = 10
+    output_path = 'data/tweet_data_raw'
+
+    if len(sys.argv) > 3:
         print("Wrong Number of Arguments")
         sys.exit(1)
+    
+    if len(sys.argv) == 3:
+        runtime = int(sys.argv[1])
+        output_path = str(sys.argv[2])
+    elif len(sys.argv) == 2:
+        runtime = int(sys.argv[1])
+
+
+    logging.info("Runtime: " + str(runtime))
+    logging.info("Output: " + output_path)
 
     # set output path
-    output_path = 'data/tweet_data_raw'
     sys.stdout = open(output_path, 'w')
 
     # add listener
@@ -57,5 +68,8 @@ if __name__ == '__main__':
         stream.filter(track=keywords, is_async=True)
     except:
         sys.exit()
-    time.sleep(runtime)
+    
+    for i in range(runtime):
+        logging.info("Fetching..." + str(i))
+        time.sleep(1)
     stream.disconnect()
