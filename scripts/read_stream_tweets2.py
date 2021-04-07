@@ -59,15 +59,32 @@ if __name__ == '__main__':
 
     tweet_dict = {}
     # tweet_dict[''] = []
-    tweet_dict['text'] = []
+    tweet_dict['truncated'] = []
     tweet_dict['retweet_count'] = []
     tweet_dict['favorite_count'] = []
     tweet_dict['author_followers_count'] = []
     tweet_dict['author_listed_count'] = []
+    tweet_dict['author_lang'] = []
     tweet_dict['author_statuses_count'] = []
     tweet_dict['author_friends_count'] = []
     tweet_dict['author_favourites_count'] = []
+    tweet_dict['author_location'] = []
+    tweet_dict['mentions_names'] = []
     tweet_dict['hashtag_indices'] = []
+    tweet_dict['hashtags'] = []
+    # tweet_dict['retweet_truncated'] = []
+    # tweet_dict['retweet_favorite_count'] = []
+    # tweet_dict['retweet_author_followers_count'] = []
+    # tweet_dict['retweet_author_listed_count'] = []
+    # tweet_dict['retweet_author_lang'] = []
+    # tweet_dict['retweet_author_statuses_count'] = []
+    # tweet_dict['retweet_author_friends_count'] = []
+    # tweet_dict['retweet_author_favourites_count'] = []
+    # tweet_dict['retweet_author_location'] = []
+    tweet_dict['lang'] = []
+    tweet_dict['created_at'] = []
+    tweet_dict['place'] = []
+    tweet_dict['text'] = []
 
     # extract info from raw data
     size = 0
@@ -75,18 +92,30 @@ if __name__ == '__main__':
         try:
             status = api.get_status(id)
             # tweet_dict[''].append()
-            tweet_dict['text'].append(status.text)
+            tweet_dict['truncated'].append(status.truncated)
             tweet_dict['retweet_count'].append(status.retweet_count)
             tweet_dict['favorite_count'].append(status.favorite_count)
             tweet_dict['author_followers_count'].append(status.author.followers_count)
             tweet_dict['author_listed_count'].append(status.author.listed_count)
+            tweet_dict['author_lang'].append(status.author.lang)
             tweet_dict['author_statuses_count'].append(status.author.statuses_count)
             tweet_dict['author_friends_count'].append(status.author.friends_count)
             tweet_dict['author_favourites_count'].append(status.author.favourites_count)
-            tweet_hashtags = []
+            tweet_dict['author_location'].append(status.author.location)
+            entities_mentions_names = []
+            for user in status.entities['user_mentions']:
+                entities_mentions_names.append(user['name'])
+            entities_hashtag_indices = []
+            entities_hashtags = []
             for hashtag in status.entities['hashtags']:
-                tweet_hashtags.append(hashtag['indices'])
-            tweet_dict['hashtag_indices'].append(tweet_hashtags)
+                entities_hashtag_indices.append(hashtag['indices'][0])
+                entities_hashtags.append(hashtag['text'])
+            tweet_dict['hashtag_indices'].append(entities_hashtag_indices)
+            tweet_dict['hashtags'].append(entities_hashtags)
+            tweet_dict['lang'].append(status.lang)
+            tweet_dict['created_at'].append(status.created_at)
+            tweet_dict['place'].append(status.place)
+            tweet_dict['text'].append(status.text)
             size += 1
         except:
             continue
@@ -96,18 +125,26 @@ if __name__ == '__main__':
         i = 0
         while i < size:
             # = tweet_dict[''][i]
-            retweets = tweet_dict['retweet_count'][i]
-            likes = tweet_dict['favorite_count'][i]
-            author_followers = tweet_dict['author_followers_count'][i]
-            author_listed = tweet_dict['author_listed_count'][i]
-            author_statuses = tweet_dict['author_statuses_count'][i]
-            author_friends = tweet_dict['author_friends_count'][i]
-            author_favourites = tweet_dict['author_favourites_count'][i]
-            hashtags = tweet_dict['hashtag_indices'][i]
-            text = tweet_dict['text'][i].encode('utf-8').replace("\n", ". ") # remove line breakers
+            truncated =                  tweet_dict['truncated'][i]
+            retweets =                   tweet_dict['retweet_count'][i]
+            likes =                      tweet_dict['favorite_count'][i]
+            author_followers =           tweet_dict['author_followers_count'][i]
+            author_listed =              tweet_dict['author_listed_count'][i]
+            author_lang =                tweet_dict['author_lang'][i]
+            author_statuses =            tweet_dict['author_statuses_count'][i]
+            author_friends =             tweet_dict['author_friends_count'][i]
+            author_favourites =          tweet_dict['author_favourites_count'][i]
+            author_location =            tweet_dict['author_location'][i]
+            hashtag_indices =            tweet_dict['hashtag_indices'][i]
+            hashtags =                   tweet_dict['hashtags'][i]
+            lang =                       tweet_dict['lang'][i]
+            created_at =                 tweet_dict['created_at'][i]
+            place =                      tweet_dict['place'][i]
+            text =                       tweet_dict['text'][i].encode('utf-8').replace("\n", ". ") # remove line breakers
             # add to output
-            print(retweets, likes, author_followers, author_listed, author_statuses, author_friends, \
-                author_favourites, hashtags, text)
+            print(truncated, retweets, likes, author_followers, author_listed, author_lang, author_statuses, \
+                author_friends, author_favourites, author_location, hashtag_indices, hashtags, lang, \
+                created_at, place, text)
             i += 1
 
     # output to csv
@@ -118,21 +155,31 @@ if __name__ == '__main__':
             tweet = []
             tweet.append(i)
             # tweet.append(tweet_dict[''][i])
+            tweet.append(tweet_dict['truncated'][i])
             tweet.append(tweet_dict['retweet_count'][i])
             tweet.append(tweet_dict['favorite_count'][i])
             tweet.append(tweet_dict['author_followers_count'][i])
             tweet.append(tweet_dict['author_listed_count'][i])
+            tweet.append(tweet_dict['author_lang'][i])
             tweet.append(tweet_dict['author_statuses_count'][i])
             tweet.append(tweet_dict['author_friends_count'][i])
             tweet.append(tweet_dict['author_favourites_count'][i])
+            author_location = tweet_dict['author_location'][i]
+            tweet.append(author_location.encode('utf-8') if not author_location is None else author_location)
             tweet.append(tweet_dict['hashtag_indices'][i])
+            tweet.append(tweet_dict['hashtags'][i])
+            tweet.append(tweet_dict['lang'][i])
+            tweet.append(tweet_dict['created_at'][i])
+            place = tweet_dict['place'][i]
+            tweet.append(place.encode('utf-8') if not place is None else place)
             tweet.append(tweet_dict['text'][i].encode('utf-8').replace("\n", ". ")) # remove line breakers
             tweets.append(tweet)
             i += 1
 
         # add colname to dataframe
-        df = pd.DataFrame(tweets, columns=['id', 'retweet_count', 'favorite_count', 'author_followers_count', \
-            'author_listed_count', 'author_statuses_count', 'author_friends_count', \
-            'author_favourites_count', 'hashtag_indices', 'text'])
+        df = pd.DataFrame(tweets, columns=['id', 'truncated', 'favorite_count', 'retweet_count', \
+            'author_followers_count', 'author_listed_count', 'author_lang', 'author_statuses_count', \
+            'author_friends_count', 'author_favourites_count', 'author_location', 'hashtag_indices', \
+            'hashtags', 'lang', 'created_at', 'place', 'text'])
         df.to_csv(output_path + ".csv", index=False)
 

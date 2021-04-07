@@ -1,9 +1,14 @@
-id,retweet_count,favorite_count,author_followers_count,author_listed_count,author_statuses_count,author_friends_count,author_favourites_count,hashtag_indices,text
-0,0,0,12,0,1289,308,4404,"[[57, 63]]",FACTS: Dan Ives is a top analyst and just upgraded $TSLA #tesla price target to $1000 or bull case $1300. Lets go!… https://t.co/9xKXtIYLAi
-1,0,0,3274,10,25932,670,20166,[],? https://t.co/LCsTNIuobH
-2,0,0,10,0,259,121,6858,[],@markwifeyyyyyy Tesla apa neeh
-3,368,0,343,10,51440,73,972,[],RT @_theghettomonk: US intervention under the Obama administration led to the slave trade in Libya. Obama increased US military presence in…
-4,6,0,565,5,15275,511,28138,[],"RT @WholeMarsBlog: if this was true (and it seems too good to be true) that would mean Tesla is able to produce a Model 3 for under $20,000…"
-5,1,0,344,5,10747,350,2558,[],RT @ikimij: What’s your menu for the day and what do you plan on having this weekend?call yikes restaurant on 09020733507. Orders are place…
-6,270,0,16126,10,130805,16341,71933,[],"RT @MPlanck_: Frankfurter Allgemeine Zeitung (FAZ) / Andreas Mihm:. . ""Türkiye, yerli otomobil TOGG'la Tesla ve Volkswagen'e meydan okuyor."""
-7,0,0,250,0,229,665,803,[],@followubackx Lol even I dont know but I have heard that Tesla is best car !! Same like you... Don't know much about cars 😂
+id,truncated,favorite_count,retweet_count,author_followers_count,author_listed_count,author_lang,author_statuses_count,author_friends_count,author_favourites_count,author_location,hashtag_indices,hashtags,lang,created_at,place,text
+0,False,0,0,4654,71,,37292,1027,36958,"NRW, Germany",[],[],en,2021-04-07 17:37:02,,@EVNewsDaily @RSymonsLTD I can't rule out UK as well. But I don't know about Tesla &amp; Bristol's relationship
+1,False,405,0,5682,46,,231229,2108,3712,,[],[],en,2021-04-07 17:37:03,,RT @cufdas: lmao nobody driving a tesla in nigeria is doing it for the environment
+2,True,0,0,72,4,,1530,162,3298,"Huntsville, AL",[],[],en,2021-04-07 17:37:03,,V2 Tesla coasters. Fits in 3&amp;Y (haven’t tested S or X yet but I think it will fit) ⁦@Kristennetten⁩ ⁦@DirtyTesla⁩ ⁦… https://t.co/Yzpjr0y2uA
+3,False,71,0,1892,0,,4205,1602,20991,Earth ,[],[],en,2021-04-07 17:37:04,,"RT @outfitter_the: Shorts N4,000. Joggers N5,000. Hoodies N6,000. Sweatshirt N6,000. . Send a DM or Whatsapp 07011991518. . Porto | Chelsea | Rema…"
+4,False,0,0,21,0,,2439,130,2517,021,[],[],pt,2021-04-07 17:37:05,,Só falta ser bom https://t.co/HCJwlxv49Y
+5,False,0,0,0,0,,268,0,0,,"[77, 110]","[u'TESLA', u'tecnologia']",it,2021-04-07 17:37:06,,{ leggi migliaia di post su: https://t.co/MQBleTXaEo } Un gran traguardo per #TESLA!… https://t.co/cp62sDL3s2 #tecnologia
+6,False,71,0,21701,5,,125606,4675,1093,TASMAN SEA,[],[],en,2021-04-07 17:37:07,,"RT @outfitter_the: Shorts N4,000. Joggers N5,000. Hoodies N6,000. Sweatshirt N6,000. . Send a DM or Whatsapp 07011991518. . Porto | Chelsea | Rema…"
+7,False,339,0,4369,2,,205781,4998,278493,,[],[],de,2021-04-07 17:37:08,,"RT @eurodolar1980x: Frankfurter Allgemeine Zeitung (FAZ): ""Türkiye, Tesla ve Volkswagen'e meydan okuyor."" https://t.co/KYXe8m1wJ2"
+8,False,299,0,3202,10,,79855,2922,26255,istanbul/TURKEY,[],[],de,2021-04-07 17:37:08,,"RT @MPlanck_: Frankfurter Allgemeine Zeitung (FAZ) / Andreas Mihm:. . ""Türkiye, yerli otomobil TOGG'la Tesla ve Volkswagen'e meydan okuyor."""
+9,True,0,0,4467,182,,14537,5001,10136,"Santa Monica, California",[],[],en,2021-04-07 17:37:08,,"@CongoCart I'm aware that Apple Hardware has software restrictions, &amp; I support hardware privacy/security architect… https://t.co/0qMl1rL5Qm"
+10,False,117,0,60,0,,6056,198,11239,,[],[],en,2021-04-07 17:37:09,,RT @TKaylah001: STAR GIRL ERICA will soon own a Tesla. Let them knowww ooooo. . TeslaRica ship go soon sail. And that’s on Landlady of Richm…
+11,False,0,0,292,1,,37257,228,6856,,[],[],en,2021-04-07 17:37:10,,Oh man. https://t.co/Qk1vChWg3A
+12,False,0,0,1892,42,,2213,470,1043,"Abu Dhabi, United Arab Emirate",[],[],in,2021-04-07 17:37:10,,@marketplunger1 @Tesla Superhuman!
