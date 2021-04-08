@@ -8,8 +8,8 @@ ticker_list = ["TSLA"]
 for t in ticker_list:
     cpny = yf.Ticker(t)
     cpny_stock = cpny.history(
-        start="2021-03-26",
-        end="2021-03-26",
+        start="2021-04-07",
+        end="2021-04-08",
         interval="1m"
     ).reset_index()
 

@@ -47,5 +47,16 @@
 - `pyspark_predict.py`
 
   - change `global_setup` part to debug
+- change absolute path to relative path accordingly
+  
+- `process_join_data.py`
 
-  - change absolute path to relative path accordingly
+
+  - process tweets and stock data, and join them to be outputted to `data/data_processed/` folder as a csv file
+  - should be run in main directory
+
+  configurations:
+
+  - `window_size=10` : look at stock price changes 10 minutes after the tweet's create time
+
+  
