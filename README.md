@@ -75,8 +75,9 @@
   - output to `data/data_prediction/`
   - run in main directory
 
-  # note: change the `Trend` in `process_join_data.py` from -1 to 0 for the model to understand it is categorical
-  
+  > note: change the `Trend` in `process_join_data.py` from -1 to 0 for the model to understand it is categorical
+
   > todo1: the indexes are messed up by cross-validation, need to fix it
+
   > todo2: need more data, current prediction is not useful since there is only one Trend
 
