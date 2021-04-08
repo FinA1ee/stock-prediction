@@ -56,13 +56,13 @@ y_window = Window.partitionBy().orderBy(stock.Datetime)
 stock = stock.withColumn("Post_price", F.lead(stock.Average, window_size) \
     .over(y_window))
 
-# calculate the diff, and the trend => 1 for up, -1 for down, 0 for same/null values
+# calculate the diff, and the trend => 1 for up, 0 for down, 0 for same/null values
 stock = stock.withColumn("Trend", \
         F.when(F.isnull(stock.Average - stock.Post_price), 0) \
         # increasing
         .when((stock.Average < stock.Post_price), 1) \
          # decreasing
-        .when((stock.Average > stock.Post_price), -1) \
+        .when((stock.Average > stock.Post_price), 0) \
         .otherwise(0)) \
         .select(col("Datetime"),col("Trend"))
 
