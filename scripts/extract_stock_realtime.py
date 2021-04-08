@@ -13,4 +13,6 @@ for t in ticker_list:
         interval="1m"
     ).reset_index()
 
+    cpny_stock['Datetime'] = cpny_stock['Datetime'].dt.tz_convert('UTC').dt.tz_localize(None)
+   	
     cpny_stock.to_csv("data/stock_data_realtime_{}.csv".format(t))

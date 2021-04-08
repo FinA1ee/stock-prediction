@@ -48,7 +48,7 @@ window_size = 10
 stock = spark.read.csv("data/stock_data_realtime_TSLA.csv", header=True) \
     .withColumn("Average",(col("Open") + col("High") + col("Low") + col("Close")) / lit(4)) \
     .select(col("Datetime"),col("Average")) \
-    .withColumn("Datetime",substring("Datetime", 1, 19))
+    # .withColumn("Datetime",substring("Datetime", 1, 19))
 
 y_window = Window.partitionBy().orderBy(stock.Datetime)
     # create Post_price column for each Datetime
