@@ -26,7 +26,13 @@ if show_description:
     print(spark.sparkContext.getConf().getAll())
 
 # df = spark.read.csv("tweetsParsed.csv", header=True)
-df = spark.read.csv("../data/stock_data_TSLA.csv", header=True)
+stock_data = spark.read.csv("../data/stock_data_TSLA.csv", header=True)
+
+# combine high, low, open, close price to an average stock price
+# result in a df containing columns ['Datetime','Avg']
+avg_price = stock_data[['Open','High','Low','Close']].mean(axis=1)
+stock_data = pd.concat([stock_data[['Datetime']],avg_price], axis=1)
+stock_data.columns = ['Datetime','Avg']
 
 if show_description:
     print("dataframe type:", type(df))
