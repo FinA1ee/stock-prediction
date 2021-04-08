@@ -9,7 +9,7 @@ from pyspark.sql.functions import col, lit, substring,concat
 from pyspark.sql.functions import min as sparkMin
 import pyspark.sql.functions as F
 import pandas as pd
-import datatime, time
+# import datetime, time
 from pyspark.sql.window import Window
 
 spark = SparkSession \
@@ -71,8 +71,10 @@ stock = stock.withColumn("Trend", \
 # =================================================
 
 joined_data = tweets.join(stock, tweets.created_at==stock.Datetime) \
+    .drop("Datetime") \
     .write.format('csv') \
     .option('header',True) \
     .mode('overwrite') \
     .option('sep',',') \
     .save('data/data_processed')
+
