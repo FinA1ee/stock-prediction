@@ -92,8 +92,8 @@ if __name__ == '__main__':
     tweet_dict['created_at'] = []
     tweet_dict['place'] = []
     tweet_dict['text'] = []
-    tweet_dict['sentiment_polarity']= []
-    tweet_dict['sentiment_subjectivity']= []
+    # tweet_dict['sentiment_polarity']= []
+    # tweet_dict['sentiment_subjectivity']= []
 
     # extract info from raw data
     size = 0
@@ -125,8 +125,8 @@ if __name__ == '__main__':
             tweet_dict['created_at'].append(status.created_at)
             tweet_dict['place'].append(status.place)
             tweet_dict['text'].append(status.text)
-            tweet_dict['sentiment_polarity'].append(getSentimentScore(str(status.text))['Polar'])
-            tweet_dict['sentiment_subjectivity'].append(getSentimentScore(str(status.text))['Subject'])
+            # tweet_dict['sentiment_polarity'].append(getSentimentScore(str(status.text))['Polar'])
+            # tweet_dict['sentiment_subjectivity'].append(getSentimentScore(str(status.text))['Subject'])
             size += 1
         except:
             continue
@@ -152,12 +152,12 @@ if __name__ == '__main__':
             created_at =                 tweet_dict['created_at'][i]
             place =                      tweet_dict['place'][i]
             text =                       str(tweet_dict['text'][i].encode('utf-8')).replace("\n", ". ") # remove line breakers
-            sentiment_polarity =              tweet_dict['sentiment_polarity'][i]
-            sentiment_subjectivity =              tweet_dict['sentiment_subjectivity'][i]
+            # sentiment_polarity =         tweet_dict['sentiment_polarity'][i]
+            # sentiment_subjectivity =     tweet_dict['sentiment_subjectivity'][i]
             # add to output
             print(truncated, retweets, likes, author_followers, author_listed, author_lang, author_statuses, \
                 author_friends, author_favourites, author_location, hashtag_indices, hashtags, lang, \
-                created_at, place, text, sentiment_polarity, sentiment_subjectivity)
+                created_at, place, text)
             i += 1
 
     # output to csv
@@ -186,8 +186,8 @@ if __name__ == '__main__':
             place = tweet_dict['place'][i]
             tweet.append(str(place).encode('utf-8') if not place is None else place)
             tweet.append(str(tweet_dict['text'][i].encode('utf-8')).replace("\n", ". ")) # remove line breakers
-            tweet.append(tweet_dict['sentiment_polarity'][i])
-            tweet.append(tweet_dict['sentiment_subjectivity'][i])
+            # tweet.append(tweet_dict['sentiment_polarity'][i])
+            # tweet.append(tweet_dict['sentiment_subjectivity'][i])
             tweets.append(tweet)
             i += 1
 
@@ -195,6 +195,6 @@ if __name__ == '__main__':
         df = pd.DataFrame(tweets, columns=['id', 'truncated', 'favorite_count', 'retweet_count', \
             'author_followers_count', 'author_listed_count', 'author_lang', 'author_statuses_count', \
             'author_friends_count', 'author_favourites_count', 'author_location', 'hashtag_indices', \
-            'hashtags', 'lang', 'created_at', 'place', 'text', 'sentiment_polarity', 'sentiment_subjectivity'])
+            'hashtags', 'lang', 'created_at', 'place', 'text'])
         df.to_csv(output_path + ".csv", index=False)
 
