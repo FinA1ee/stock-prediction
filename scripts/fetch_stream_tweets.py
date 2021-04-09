@@ -45,7 +45,7 @@ if __name__ == '__main__':
         print("Wrong Number of Arguments")
         sys.exit(1)
 
-    runtime = int(sys.argv[1])
+    runtime = int(sys.argv[1]) # minute
     output_path = str(sys.argv[2])
     sys.stdout = open(output_path, 'w')
 
@@ -66,8 +66,8 @@ if __name__ == '__main__':
     except:
         sys.exit()
     
-    for i in range(runtime):
+    for i in range(runtime * 60):
         logger.info("Fetching..." + str(i))
         time.sleep(1)
-
+    
     stream.disconnect()
