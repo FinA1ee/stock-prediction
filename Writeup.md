@@ -1,5 +1,10 @@
 - Idea
 
+Our hypothesis the stock market price trend is highly related to the public impression towards the companys,
+and social medias like Twitter is a common place where people express their opinions.
+
+Our investigation target is the Tesla Inc,
+
 Use real-time tweets sent by user to get s sense of the public impression on stock market, and try to quantify it by assigning scores to each tweets, then run LSTM model to train the scores generated on the timeline, to predict a future trend of stock market.
 
 1. Retrieve Data
