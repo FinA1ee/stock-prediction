@@ -5,7 +5,7 @@ import json
 import tweepy
 import time
 import sys
-
+from datetime import datetime,timezone
 from tweepy.streaming import StreamListener
 from tweepy import OAuthHandler
 from tweepy import Stream
@@ -45,7 +45,7 @@ if __name__ == '__main__':
         print("Wrong Number of Arguments")
         sys.exit(1)
 
-    runtime = int(sys.argv[1])
+    runtime = int(sys.argv[1]) # minute
     output_path = str(sys.argv[2])
     sys.stdout = open(output_path, 'w')
 
@@ -69,5 +69,5 @@ if __name__ == '__main__':
     for i in range(runtime):
         logger.info("Fetching..." + str(i))
         time.sleep(1)
-
+    
     stream.disconnect()
