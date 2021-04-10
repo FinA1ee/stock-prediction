@@ -7,14 +7,23 @@ All scripts should be running under >= Python 3.6.
 - `twitter.sh`
 
   ```
+  pip3 install progessbar
   chmod +x twitter.sh
   ./twitter.sh
   ```
 
-  Set variable iter\runtime to adjust the running time/iteration of fetch/read scripts.
-  i.e if we fetch 60 min of data, sliced each 5 min, then runtime = 300, iteration = 12
+  1. Use `progressbar` library to display scrip running progess.
+  2. Set variable `iter` to adjust how many iterations to run.
+  3. Set variable `runtime` to adjust how long to run in seconds for each iteration.
+  4. Raw tweet jsons are stored in `data/tweetRaw/*`.
+  5. Processed csv files are stored in `data/tweetParsed/*`.
 
-  The data produced are stored in data/tweetParsed, data/tweetRaw folders.
+  i.e If we fetch 6 hours of data, 30 min each set, then set in twitter.sh:
+
+  ```
+  let iter=12
+  let runtime=1800
+  ```
 
 - `fetch_stream_tweets.py`
 

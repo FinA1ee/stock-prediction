@@ -5,6 +5,7 @@ import json
 import tweepy
 import time
 import sys
+from progressbar import *
 from datetime import datetime,timezone
 from tweepy.streaming import StreamListener
 from tweepy import OAuthHandler
@@ -49,8 +50,8 @@ if __name__ == '__main__':
     output_path = str(sys.argv[2])
     sys.stdout = open(output_path, 'w')
 
-    logger.info("Runtime: " + str(runtime))
-    logger.info("Output: " + output_path)
+    logger.info("Runtime: " + str(runtime) + " seconds.")
+    logger.info("Output to: " + output_path)
 
     # add listener
     l = StdOutListener()
@@ -66,8 +67,8 @@ if __name__ == '__main__':
     except:
         sys.exit()
     
-    for i in range(runtime):
-        logger.info("Fetching..." + str(i))
+    progress = ProgressBar()
+    for i in progress(range(runtime)):
         time.sleep(1)
-    
+        
     stream.disconnect()

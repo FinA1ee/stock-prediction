@@ -4,6 +4,7 @@ import json
 import sys
 import tweepy
 import pandas as pd
+from progressbar import *
 
 #Variables that contains the user credentials to access Twitter API 
 access_token = "950545014542741504-uToPAGQNxW5GWYcEhVmSl1HZiRYbKVM"
@@ -34,6 +35,8 @@ if __name__ == '__main__':
     handler.setFormatter(formatter)
     logger.addHandler(handler)
 
+    logger.info("Read Script Running...")
+
     # parse arguments
     if len(sys.argv) != 3:
         print("Wrong Number of Arguments")
@@ -44,8 +47,8 @@ if __name__ == '__main__':
     output_path = str(sys.argv[2])
     sys.stdout = open(output_path, 'w')
 
-    logger.info("Handing File: " + input_path)
-    logger.info("Output to: " + output_path)
+    logger.info("Reading file: " + input_path)
+    logger.info("Output csv to: " + output_path + ".csv")
 
     # authorization of consumer key and consumer secret
     auth = tweepy.OAuthHandler(consumer_key, consumer_secret)
@@ -100,8 +103,11 @@ if __name__ == '__main__':
     # tweet_dict['emoji']= []
 
     # extract info from raw data
+    progress = ProgressBar()
     size = 0
-    for id in tweet_ids:
+    logger.info("Number of tweets to process: " + str(len(tweet_ids)))
+    for i in progress(range(len(tweet_ids))):
+        id = tweet_ids[i]
         try:
             status = api.get_status(id)
             # tweet_dict[''].append()
