@@ -3,7 +3,6 @@ import logging
 import json
 import sys
 import tweepy
-import emojis
 import pandas as pd
 
 #Variables that contains the user credentials to access Twitter API 
@@ -94,7 +93,7 @@ if __name__ == '__main__':
     # tweet_dict['retweet_author_location'] = []
     tweet_dict['lang'] = []
     tweet_dict['created_at'] = []
-    # tweet_dict['place'] = []
+    tweet_dict['place'] = []
     tweet_dict['text'] = []
     tweet_dict['sentiment_polarity']= []
     tweet_dict['sentiment_subjectivity']= []
@@ -102,9 +101,7 @@ if __name__ == '__main__':
 
     # extract info from raw data
     size = 0
-    count = 0
     for id in tweet_ids:
-        logger.info("Processing tweet: " + str(count))
         try:
             status = api.get_status(id)
             # tweet_dict[''].append()
@@ -130,15 +127,13 @@ if __name__ == '__main__':
             tweet_dict['hashtags'].append(entities_hashtags)
             tweet_dict['lang'].append(status.lang)
             tweet_dict['created_at'].append(status.created_at)
-            # tweet_dict['place'].append(status.place)
+            tweet_dict['place'].append(status.place)
             tweet_dict['text'].append(status.text)
             tweet_dict['sentiment_polarity'].append(getSentimentScore(str(status.text))['Polar'])
             tweet_dict['sentiment_subjectivity'].append(getSentimentScore(str(status.text))['Subject'])
             # tweet_dict['emoji'].append(str(extractEmojis(str(status.text))))
             size += 1
-            count += 1
         except:
-            count += 1
             continue
 
     # print info
@@ -160,7 +155,7 @@ if __name__ == '__main__':
             hashtags =                   tweet_dict['hashtags'][i]
             lang =                       tweet_dict['lang'][i]
             created_at =                 tweet_dict['created_at'][i]
-            # place =                      tweet_dict['place'][i]
+            place =                      tweet_dict['place'][i]
             text =                       tweet_dict['text'][i].replace(",", " ").replace("\n", ". ") # remove line breakers
             sentiment_polarity =         tweet_dict['sentiment_polarity'][i]
             sentiment_subjectivity =     tweet_dict['sentiment_subjectivity'][i]
@@ -168,7 +163,7 @@ if __name__ == '__main__':
             # add to output
             print(truncated, retweets, likes, author_followers, author_listed, author_lang, author_statuses, \
                 author_friends, author_favourites, author_location, hashtag_indices, hashtags, lang, \
-                created_at, text, sentiment_polarity, sentiment_subjectivity)
+                created_at, place, text, sentiment_polarity, sentiment_subjectivity)
             i += 1
 
     # output to csv
@@ -194,8 +189,8 @@ if __name__ == '__main__':
             tweet.append(tweet_dict['hashtags'][i])
             tweet.append(tweet_dict['lang'][i])
             tweet.append(tweet_dict['created_at'][i])
-            # place = tweet_dict['place'][i]
-            # tweet.append(place if not place is None else place)
+            place = tweet_dict['place'][i]
+            tweet.append(place if not place is None else place)
             tweet.append(tweet_dict['text'][i].replace(",", " ").replace("\n", ". ")) # remove line breakers
             tweet.append(tweet_dict['sentiment_polarity'][i])
             tweet.append(tweet_dict['sentiment_subjectivity'][i])
@@ -207,6 +202,6 @@ if __name__ == '__main__':
         df = pd.DataFrame(tweets, columns=['id', 'truncated', 'favorite_count', 'retweet_count', \
             'author_followers_count', 'author_listed_count', 'author_lang', 'author_statuses_count', \
             'author_friends_count', 'author_favourites_count', 'author_location', 'hashtag_indices', \
-            'hashtags', 'lang', 'created_at', 'text', 'sentiment_polarity', 'sentiment_subjectivity'])
+            'hashtags', 'lang', 'created_at', 'place', 'text', 'sentiment_polarity', 'sentiment_subjectivity'])
         df.to_csv(output_path + ".csv", index=False)
     

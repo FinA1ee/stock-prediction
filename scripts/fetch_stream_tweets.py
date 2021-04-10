@@ -66,7 +66,7 @@ if __name__ == '__main__':
     except:
         sys.exit()
     
-    for i in range(runtime * 60):
+    for i in range(runtime):
         logger.info("Fetching..." + str(i))
         time.sleep(1)
     
