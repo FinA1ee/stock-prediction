@@ -9,7 +9,7 @@ for t in ticker_list:
     cpny = yf.Ticker(t)
     cpny_stock = cpny.history(
         start="2021-04-09",
-        end="2021-04-10",
+        end="2021-04-11",
         interval="1m"
     ).reset_index()
 
