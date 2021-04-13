@@ -100,7 +100,7 @@ if __name__ == '__main__':
     tweet_dict['text'] = []
     tweet_dict['sentiment_polarity']= []
     tweet_dict['sentiment_subjectivity']= []
-    tweet_dict['emoji']= []
+    # tweet_dict['emoji']= []
 
     # extract info from raw data
     progress = ProgressBar()
@@ -137,7 +137,7 @@ if __name__ == '__main__':
             tweet_dict['text'].append(status.text)
             tweet_dict['sentiment_polarity'].append(getSentimentScore(str(status.text))['Polar'])
             tweet_dict['sentiment_subjectivity'].append(getSentimentScore(str(status.text))['Subject'])
-            tweet_dict['emoji'].append(str(extractEmojis(str(status.text))))
+            # tweet_dict['emoji'].append(str(extractEmojis(str(status.text))))
             size += 1
         except:
             continue
@@ -165,12 +165,11 @@ if __name__ == '__main__':
             text =                       tweet_dict['text'][i].replace(",", " ").replace("\n", ". ") # remove line breakers
             sentiment_polarity =         tweet_dict['sentiment_polarity'][i]
             sentiment_subjectivity =     tweet_dict['sentiment_subjectivity'][i]
-            emoji =                      tweet_dict['emoji'][i]
-
+            # emoji =                      tweet_dict['emoji'][i]
             # add to output
             print(truncated, retweets, likes, author_followers, author_listed, author_lang, author_statuses, \
                 author_friends, author_favourites, author_location, hashtag_indices, hashtags, lang, \
-                created_at, place, text, sentiment_polarity, sentiment_subjectivity, emoji)
+                created_at, place, text, sentiment_polarity, sentiment_subjectivity)
             i += 1
 
     # output to csv
@@ -201,7 +200,7 @@ if __name__ == '__main__':
             tweet.append(tweet_dict['text'][i].replace(",", " ").replace("\n", ". ")) # remove line breakers
             tweet.append(tweet_dict['sentiment_polarity'][i])
             tweet.append(tweet_dict['sentiment_subjectivity'][i])
-            tweet.append(tweet_dict['emoji'][i])
+            # tweet.append(tweet_dict['emoji'][i])
             tweets.append(tweet)
             i += 1
 
@@ -209,6 +208,6 @@ if __name__ == '__main__':
         df = pd.DataFrame(tweets, columns=['id', 'truncated', 'favorite_count', 'retweet_count', \
             'author_followers_count', 'author_listed_count', 'author_lang', 'author_statuses_count', \
             'author_friends_count', 'author_favourites_count', 'author_location', 'hashtag_indices', \
-            'hashtags', 'lang', 'created_at', 'place', 'text', 'sentiment_polarity', 'sentiment_subjectivity', 'emoji'])
+            'hashtags', 'lang', 'created_at', 'place', 'text', 'sentiment_polarity', 'sentiment_subjectivity'])
         df.to_csv(output_path + ".csv", index=False)
     
