@@ -22,8 +22,8 @@ def getSentimentScore(content):
         'Subject': round(testimonial.sentiment.subjectivity, 3)
     }
 
-# def extractEmojis(content): 
-#     return len(emojis.get(content))
+def extractEmojis(content): 
+    return ''.join(c for c in content if c in emoji.UNICODE_EMOJI)
 
 if __name__ == '__main__':
 
