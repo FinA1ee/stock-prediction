@@ -1,0 +1,4 @@
+id,truncated,favorite_count,retweet_count,author_followers_count,author_listed_count,author_lang,author_statuses_count,author_friends_count,author_favourites_count,author_location,hashtag_indices,hashtags,lang,created_at,place,text
+0,False,0,0,258,0,,3324,26,38635,"b'Hyderabad, Telangana, India'",[],[],en,2021-04-09 09:51:11,,"b""@Quicktake @Tesla @AkshatRathi Don't waste food \xf0\x9f\x91\x8d"""
+1,True,0,0,209,28,,3469,286,10796,b'',[],[],en,2021-04-09 09:51:12,,"b'@brodieferguson @elonmusk Boring Co. tunnels for EVs is exactly like a Subway! Only difference it cost 10x less, 10\xe2\x80\xa6 https://t.co/oP33TNfvMM'"
+2,False,0,0,71,1,,3362,155,1957,b'',[],[],en,2021-04-09 09:51:13,,"b'@Friends_of_EV @MahathirAhmad @elonmusk @Tesla Not very well publicised, is it?'"
