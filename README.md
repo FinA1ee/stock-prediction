@@ -11,6 +11,7 @@ All scripts should be running under Python 3.6.
   python3 -m pip install progressbar
   python3 -m pip install pandas
   python3 -m pip install textblob
+  python3 -m pip install emojis
 
   chmod +x twitter.sh
   ./twitter.sh [iteration] [runtime] [date]
@@ -101,3 +102,9 @@ All scripts should be running under Python 3.6.
   > todo1: the indexes are messed up by cross-validation, need to fix it
 
   > todo2: need more data, current prediction is not useful since there is only one Trend
+
+#### Features
+
+- `Sentiment_Score`
+
+- `Emoji_Score`
