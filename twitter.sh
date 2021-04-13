@@ -1,16 +1,12 @@
 #!/bin/bash
 
 # Run scripts iter times for runtime secs
-let iter=$1
-let runtime=$2
-date=$3
+let iter=3
+let runtime=20
 
-mkdir data/tweet_raw_${date}
-mkdir data/tweet_parsed_${date}
-
-baseFetchOutpath="data/tweet_raw_${date}/tweet_data_raw_"
-baseReadInpath="data/tweet_raw_${date}/tweet_data_raw_"
-baseReadOutpath="data/tweet_parsed_${date}/tweet_data_parsed_"
+baseFetchOutpath="data/tweetRaw/tweet_data_raw_"
+baseReadInpath="data/tweetRaw/tweet_data_raw_"
+baseReadOutpath="data/tweetParsed/tweet_data_parsed_"
 
 for i in `seq 1 $iter`;
 do 

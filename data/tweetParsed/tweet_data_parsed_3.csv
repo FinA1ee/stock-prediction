@@ -1,0 +1,7 @@
+id,truncated,favorite_count,retweet_count,author_followers_count,author_listed_count,author_lang,author_statuses_count,author_friends_count,author_favourites_count,author_location,hashtag_indices,hashtags,lang,created_at,place,text,sentiment_polarity,sentiment_subjectivity
+0,False,0,0,1,0,,23,42,14,,"[0, 6, 16]","['btt', 'elonmusk', 'justinsan']",en,2021-04-10 08:44:01,,#btt  #elonmusk #justinsan when can we get tesla with bittorent ?,0.0,0.0
+1,False,8651,0,342,2,,64501,2364,262314,Southern Paiute Land,[],[],en,2021-04-10 08:44:02,,RT @Hbomberguy: Think trains  only slower  you need to own a car to use it  and it cost 700 billion dollars,0.3,1.0
+2,True,0,0,247,5,,2487,287,2457,"Birmingham, England",[],[],en,2021-04-10 08:44:05,,@mickakers @Tesla @boringcompany So when they come out into the centre of a city  where do they go? Straight into r… https://t.co/A8u3bbm02H,0.2,0.4
+3,True,0,0,29,0,,30,150,22,,[],[],en,2021-04-10 08:44:08,,@elonmusk Dear Elon I am a huge fan of Tesla&amp;U. However  i am very embarrassed among my frds after my new tesla Y h… https://t.co/uM2PXu1U0T,0.245,0.552
+4,False,8,0,26,1,,2899,337,747,,[],[],en,2021-04-10 08:44:09,,RT @ComptonDad1: @elonmusk All @elonmusk needs to do is say Tesla will accept Dogecoin as payment and the value of Dogecoin will sky rocket…,0.0,0.0
+5,False,2,0,3800,11,,1368,10,1760,"London, England",[],[],en,2021-04-10 08:44:16,,RT @Leigh_Christie: Nio has manufactured 100k electric cars. . . How many other auto companies can make that claim?. . Tesla  Nissan  GM?. . Who…,0.188,0.438
