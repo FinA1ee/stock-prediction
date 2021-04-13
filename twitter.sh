@@ -3,7 +3,7 @@
 # Run scripts iter times for runtime secs
 let iter=$1
 let runtime=$2
-data=$3
+date=$3
 
 mkdir data/tweet_raw_${date}
 mkdir data/tweet_parsed_${date}

@@ -16,7 +16,7 @@ All scripts should be running under Python 3.6.
   ./twitter.sh [iteration] [runtime] [date]
   ```
 
-  1. Use `progressbar` library to display scrip running progess.
+  1. Use `progressbar` library to display script running progess.
   2. Set command line arg `iteration` to adjust how many iterations to run.
   3. Set command line arg `runtime` to adjust how long to run in seconds for each iteration.
   4. Set command line arg `date` to adjust the date of running.
@@ -24,7 +24,7 @@ All scripts should be running under Python 3.6.
   6. Processed csv files are stored in `data/tweet_parsed_[date]/*`.
 
   ```
-  # If we fetch 6 hours of data, 30 min each set on 13rd April, then run twitter.sh:
+  # If we fetch 6 hours of real-time data, 30 min each set on 13rd April, then run twitter.sh:
   $ ./twitter.sh 12 1800 0413
   ```
 
