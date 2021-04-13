@@ -2,27 +2,30 @@
 
 #### Scripts
 
-All scripts should be running under >= Python 3.6.
+All scripts should be running under Python 3.6.
 
 - `twitter.sh`
 
   ```
-  pip3 install progessbar
+  python3 -m pip install tweepy
+  python3 -m pip install progressbar
+  python3 -m pip install pandas
+  python3 -m pip install textblob
+
   chmod +x twitter.sh
-  ./twitter.sh
+  ./twitter.sh [iteration] [runtime] [date]
   ```
 
   1. Use `progressbar` library to display scrip running progess.
-  2. Set variable `iter` to adjust how many iterations to run.
-  3. Set variable `runtime` to adjust how long to run in seconds for each iteration.
-  4. Raw tweet jsons are stored in `data/tweetRaw/*`.
-  5. Processed csv files are stored in `data/tweetParsed/*`.
-
-  i.e If we fetch 6 hours of data, 30 min each set, then set in twitter.sh:
+  2. Set command line arg `iteration` to adjust how many iterations to run.
+  3. Set command line arg `runtime` to adjust how long to run in seconds for each iteration.
+  4. Set command line arg `date` to adjust the date of running.
+  5. Raw tweet jsons are stored in `data/tweet_raw_[date]/*`.
+  6. Processed csv files are stored in `data/tweet_parsed_[date]/*`.
 
   ```
-  let iter=12
-  let runtime=1800
+  # If we fetch 6 hours of data, 30 min each set on 13rd April, then run twitter.sh:
+  $ ./twitter.sh 12 1800 0413
   ```
 
 - `fetch_stream_tweets.py`
