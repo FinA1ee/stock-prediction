@@ -159,7 +159,7 @@ if __name__ == '__main__':
             tweet_dict['text'].append(status.text)
             tweet_dict['sentiment_polarity'].append(getSentimentScore(str(status.text))['Polar'])
             tweet_dict['sentiment_subjectivity'].append(getSentimentScore(str(status.text))['Subject'])
-            tweet_dict['emoji'].append(getEmojiScore(status.text))
+            tweet_dict['emoji_score'].append(getEmojiScore(status.text))
             size += 1
         except:
             continue
@@ -187,7 +187,7 @@ if __name__ == '__main__':
             text =                       tweet_dict['text'][i].replace(",", " ").replace("\n", ". ") # remove line breakers
             sentiment_polarity =         tweet_dict['sentiment_polarity'][i]
             sentiment_subjectivity =     tweet_dict['sentiment_subjectivity'][i]
-            emoji =                      tweet_dict['emoji_score'][i]
+            emoji_score =                      tweet_dict['emoji_score'][i]
 
             # add to output
             print(truncated, retweets, likes, author_followers, author_listed, author_lang, author_statuses, \
