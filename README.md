@@ -73,19 +73,23 @@ All scripts should be running under Python 3.6.
   - change `global_setup` part to debug
 
 - change absolute path to relative path accordingly
+
 - `process_join_data.py`
 
+  ```
+  python3 process_join_data.py [target_date]
+  python3 process_join_data.py 0409
+  ```
+
+  - process tweets for hashtags. outputted to `data/tweet_processed_{target_date}/` folder as a csv file
   - process tweets and stock data, and join them to be outputted to `data/data_processed/` folder as a csv file
   - should be run in main directory
+  - make sure you have `data/stock_data.csv` before running
 
   note:
 
   - `window_size=10` : look at stock price changes 10 minutes after the tweet's create time
   - `trend`: 1 represents increasing, -1 represents decreasing, 0 otherwise
-
-  > example of processed stock data:
-
-  ![](pics/stock-data-example.png)
 
 - `pyspark_rf_train.py`
 

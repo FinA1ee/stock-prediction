@@ -1,7 +1,7 @@
 # =================================================
 # Process stock and tweets data
 # =================================================
-
+import sys
 import pyspark
 from pyspark import SparkConf
 from pyspark.sql import SparkSession
@@ -26,6 +26,12 @@ spark = SparkSession \
 #     print("sparkContext:")
 #     print(spark.sparkContext.getConf().getAll())
 
+#################  Get commandline args  ################
+# target_date = "0409"
+target_date = sys.argv[1]
+threshold = 1
+
+relative_phrase = ["crypto", "eth", "crypto", "elon", "btc", "musk"]
 
 # =================================================
 # 1. Process tweets data
@@ -33,9 +39,39 @@ spark = SparkSession \
 # - round it to 2021-04-07 17:37:00 as a join key with stock data
 # =================================================
 
-tweets = spark.read.csv("data/tweetParsed/*.csv", header=True) \
-    .withColumn("created_at",concat(substring("created_at", 1, 17),lit("00"))) 
+tweets = spark.read.csv("data/tweet_parsed_"+target_date+"/*.csv", header=True) \
+    .withColumn("created_at",concat(substring("created_at", 1, 17),lit("00"))) \
+    .withColumn("hashtags", F.lower("hashtags")) \
+    .withColumn("ht_info", lit(""))
+    # - clean the hashtag, split it to array of strings
+    # - explode to new rows of hashtags
+    # - to lower case 
+    # - group by hashtag name
+    # - filter out ones that occurs more than [threshold] times
+# ht = tweets \
+#     .withColumn("hashtags", F.regexp_replace("hashtags", "\\[", "")) \
+#     .withColumn("hashtags", F.regexp_replace("hashtags", "\\]", "")) \
+#     .withColumn("hashtags", F.regexp_replace("hashtags", "\\'", "")) \
+#     .withColumn("hashtags", F.split(col("hashtags"), "\\,"))
 
+for word in relative_phrase:
+    tweets = tweets.withColumn("ht_info", \
+        F.when(tweets.hashtags.contains(lit(word)), concat(tweets.ht_info, lit("1"))) \
+        .otherwise(concat(tweets.ht_info, lit("0"))))
+
+tweets.write.format('csv') \
+    .option('header',True) \
+    .mode('overwrite') \
+    .option('sep',',') \
+    .save('data/tweet_processed_'+target_date)
+########## each row represents a hashtag
+# ht_dict =  ht.select(col("hashtags"))
+# ht_dict = ht_dict.filter(ht_dict.hashtags!= "[]") \
+#     .select("hashtags",F.explode_outer("hashtags")) \
+#     .select("col") \
+#     .groupBy("col").count() \
+#     .select(col("col").alias("hashtag"),col("count").alias("occurance"))
+# ht_dict = ht_dict.filter(ht_dict.occurance>=threshold)
 
 # =================================================
 # 2. Calculate average stock data
@@ -45,7 +81,7 @@ tweets = spark.read.csv("data/tweetParsed/*.csv", header=True) \
 
 window_size = 10
 
-stock = spark.read.csv("data/stock_data_realtime_TSLA.csv", header=True) \
+stock = spark.read.csv("data/stock_data.csv", header=True) \
     .withColumn("Average",(col("Open") + col("High") + col("Low") + col("Close")) / lit(4)) \
     .select(col("Datetime"),col("Average")) \
     # .withColumn("Datetime",substring("Datetime", 1, 19))

@@ -15,4 +15,4 @@ for t in ticker_list:
 
     cpny_stock['Datetime'] = cpny_stock['Datetime'].dt.tz_convert('UTC').dt.tz_localize(None)
    	
-    cpny_stock.to_csv("data/stock_data_realtime_{}.csv".format(t))
+    cpny_stock.to_csv("data/stock_data.csv".format(t))
