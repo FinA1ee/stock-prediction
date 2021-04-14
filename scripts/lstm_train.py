@@ -8,10 +8,10 @@ from keras.layers import Dense, Conv1D, MaxPooling1D, Flatten, Dropout
 import os
 import glob
 
-# python "E:/current term/cs 451/project/stock-prediction/scripts/pyspark_lstm_train.py"
+# python "scripts/pyspark_lstm_train.py"
 print("Num GPUs Available: ", len(tf.config.experimental.list_physical_devices('GPU')))
 
-path = 'E:/current term/cs 451/project/stock-prediction/data/data_processed/'
+path = 'data/data_processed/'
 all_files = glob.glob(path + "/*.csv")
 li = []
 for filename in all_files:
@@ -20,7 +20,7 @@ for filename in all_files:
 train = pd.concat(li, axis=0, ignore_index=True)
 labels = train.values[:,-1].astype('float32')
 X_train = train.values[:,-1].astype('float32')
-#X_test = pd.read_csv('E:/current term/cs 451/project/stock-prediction/data/data_processed/*.csv').values[:,:-1]
+#X_test = pd.read_csv('data/data_processed/*.csv').values[:,:-1]
 
 # convert list of labels to binary class matrix
 y_train = np_utils.to_categorical(labels)
@@ -38,7 +38,6 @@ model.add(layers.GRU(256, return_sequences=True))
 model.add(layers.Conv1D(64, 1, activation='relu'))
 model.add(layers.Bidirectional(layers.LSTM(256, return_sequences=True)))
 model.add(layers.Bidirectional(layers.LSTM(128)))
-#model.add(layers.SimpleRNN(256))
 model.add(Flatten())
 model.add(Dense(32, activation='relu'))
 model.add(layers.Dense(nb_classes, activation='softmax'))
@@ -61,4 +60,4 @@ preds = np.argmax(model.predict(X_train), axis=-1)
 def write_preds(preds, fname):
     pd.DataFrame({"id": list(range(0,len(preds))), "label": preds}).to_csv(fname, index=False, header=True)
 
-write_preds(preds, "E:/current term/cs 451/project/stock-prediction/data/data_prediction/predict_lstm.csv")
+write_preds(preds, "data/data_prediction/predict_lstm.csv")
