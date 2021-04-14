@@ -1,5 +1,28 @@
 # stock-prediction
 
+#### Usage
+
+1. Fetch twitter data
+
+2. Fetch Stock data
+
+   see `extract_stock.py`
+
+   ```
+   python3 extract_stock.py 2021-03-01 2021-04-01
+   1d
+   ```
+
+3. Process and combine twitter data and stock data
+
+   see `process_join_data.py`
+
+   ```
+   python3 process_join_data.py 0409 
+   ```
+
+   
+
 #### Scripts
 
 All scripts should be running under Python 3.6.
@@ -50,15 +73,32 @@ All scripts should be running under Python 3.6.
 
 - `extract_stock.py`
 
-  uses `yfinance` library to extract stock data for a certain company everyday from 2020-11-01 to 2020-12-01
+  uses `yfinance` library to extract stock data for Tesla
 
   ```
   pip3 install yfinance
+  python3 extract_stock.py [start-date] [end-date] [interval]
   ```
 
-  - change `ticker_name` to desired company name in the script
+  for example, to extract monthly stock data from Oct 2020 to Dec 2020
 
-  - change `interval` if you want to extract with different frequencies (ie, stock price change every minute/ hour/ etc.)
+  ```
+  python3 extract_stock.py 2020-10-01 2020-12-01 1mo
+  ```
+
+  - in the script, change `ticker_name` to desired company name in the script
+
+  - valid  `interval` values: 
+
+    ```
+    1m,2m,5m,15m,30m,60m,90m,1h,1d,5d,1wk,1mo,3mo
+    ```
+
+  - valid `start`, `end` values
+
+    ```
+    [year-month-day]: 2020-10-01
+    ```
 
   - Run in main directory `/stock_prediction`, and output `stock_data.csv` file will be in `/data` folder
 

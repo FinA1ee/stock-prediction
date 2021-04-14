@@ -16,16 +16,7 @@ spark = SparkSession \
     .builder \
     .appName("Stock Price Prediction") \
     .getOrCreate()
-
-# global_setup
-# show_description = True
-# show_fig = True
-# SPLIT_SEED = 12345
-
-# if show_description:
-#     print("sparkContext:")
-#     print(spark.sparkContext.getConf().getAll())
-
+    
 #################  Get commandline args  ################
 # target_date = "0409"
 target_date = sys.argv[1]
@@ -39,9 +30,11 @@ relative_phrase = ["crypto", "eth", "crypto", "elon", "btc", "musk"]
 # - round it to 2021-04-07 17:37:00 as a join key with stock data
 # =================================================
 
+# data by day: 2021-04-07
 tweets = spark.read.csv("data/tweet_parsed_"+target_date+"/*.csv", header=True) \
-    .withColumn("created_at",concat(substring("created_at", 1, 17),lit("00"))) \
-    .withColumn("hashtags", F.lower("hashtags")) \
+    .withColumn("created_at",substring("created_at", 1, 10))
+
+tweets = tweets.withColumn("hashtags", F.lower("hashtags")) \
     .withColumn("ht_info", lit(""))
     # - clean the hashtag, split it to array of strings
     # - explode to new rows of hashtags
@@ -59,11 +52,6 @@ for word in relative_phrase:
         F.when(tweets.hashtags.contains(lit(word)), concat(tweets.ht_info, lit("1"))) \
         .otherwise(concat(tweets.ht_info, lit("0"))))
 
-tweets.write.format('csv') \
-    .option('header',True) \
-    .mode('overwrite') \
-    .option('sep',',') \
-    .save('data/tweet_processed_'+target_date)
 ########## each row represents a hashtag
 # ht_dict =  ht.select(col("hashtags"))
 # ht_dict = ht_dict.filter(ht_dict.hashtags!= "[]") \
@@ -79,14 +67,15 @@ tweets.write.format('csv') \
 # - result in a df containing columns ['Datetime','Trend']
 # =================================================
 
-window_size = 10
+# by one day
+window_size = 1
 
 stock = spark.read.csv("data/stock_data.csv", header=True) \
     .withColumn("Average",(col("Open") + col("High") + col("Low") + col("Close")) / lit(4)) \
-    .select(col("Datetime"),col("Average")) \
+    .select(col("Date"),col("Average"))
     # .withColumn("Datetime",substring("Datetime", 1, 19))
 
-y_window = Window.partitionBy().orderBy(stock.Datetime)
+y_window = Window.partitionBy().orderBy(stock.Date)
     # create Post_price column for each Datetime
     # corresponds to creted_at_minute col for tweets data
 stock = stock.withColumn("Post_price", F.lead(stock.Average, window_size) \
@@ -100,14 +89,14 @@ stock = stock.withColumn("Trend", \
          # decreasing
         .when((stock.Average > stock.Post_price), 0) \
         .otherwise(2)) \
-        .select(col("Datetime"),col("Trend"))
+        .select(col("Date"),col("Trend"))
 
 # =================================================
 # 3. Join stock data with corresponding tweets data
 # =================================================
 
-joined_data = tweets.join(stock, tweets.created_at==stock.Datetime) \
-    .drop("Datetime") \
+joined_data = tweets.join(stock, tweets.created_at==stock.Date) \
+    .drop("Date") \
     .write.format('csv') \
     .option('header',True) \
     .mode('overwrite') \
