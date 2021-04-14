@@ -1,5 +1,69 @@
 # stock-prediction
 
+#### How to get Long-term Data
+
+only processed dataset `long_term_processed_[year]` was uploaded
+
+Here is how the dataset was created:
+
+##### 1- Download Dataset from Kaggle
+
+1. get your `kaggle.json` , put it in `~/.kaggle/kaggle.json`
+
+2. install kaggle
+
+   ```
+   pip3 install kaggle --user
+   export PATH=~/.local/bin:$PATH
+   ```
+
+3. download the dataset
+
+   ```
+   kaggle datasets download -d omermetinn/tweets-about-the-top-companies-from-2015-to-2020
+   unzip tweets-about-the-top-companies-from-2015-to-2020.zip data/
+   ```
+
+the original dataset contains data from 2015 to 2020, but here we are only using data from 2018 to 2020
+
+##### 2- Extract tweets
+
+run `long_term_extract_tweets.py`
+
+```
+python3 scripts/long_term_extract_tweets.py
+```
+
+- due to java heap space limitation, we have to split the data to corresponding year and output them separately.
+- this scripts is hard-coded to output data for 2018 to 2020
+- **output**: in `data/long_term_tweets_{year}`
+
+##### 3- Extract stock prices
+
+run `long_term_extract_stock.py`
+
+```
+python3 scripts/long_term_extract_stock.py [start] [end]
+python3 scripts/long_term_extract_stock.py 2018 2019
+```
+
+- run this script to extract monthly stock price from in [start] year to [end] year
+- in our case, just run it 3 times, with `start` in [2018-2020], and `end = start+1`
+- **output**: in `data/long_term_stock_{year}`
+
+##### 4- Process data
+
+run `long_term_process.py`
+
+```
+python3 scripts/long_term_extract_stock.py [target-year]
+python3 scripts/long_term_extract_stock.py 2018
+```
+
+- run this script to process & join data to a trainable state for `target-year`
+- in our case, just run it 3 times, with `target-year` in [2018-2020]
+- **output**: in `data/long_term_processed_{year}`
+
 #### Usage
 
 1. Fetch twitter data
@@ -156,3 +220,4 @@ All scripts should be running under Python 3.6.
 - `Sentiment_Score`
 
 - `Emoji_Score`
+
