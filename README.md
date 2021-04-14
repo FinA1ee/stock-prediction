@@ -66,13 +66,9 @@ All scripts should be running under Python 3.6.
 
   - debug purpose, use it to test ml framework without pyspark
 
-  - change absolute path to relative path accordingly
-
 - `pyspark_predict.py`
 
   - change `global_setup` part to debug
-
-- change absolute path to relative path accordingly
 
 - `process_join_data.py`
 
@@ -95,17 +91,25 @@ All scripts should be running under Python 3.6.
 
   - take input of `data/data_processed/*.csv` as training (and testing, for now) data
   - train 5 folds cv random forest model on numerical data
-    - customize 1: change max_trees, max amount of random forests generated
-    - customize 2: change maxDepth, max depth of each random forest
-    - customize 3: change minInstancesPerNode, minimum distance of each subnode, currently calculated using Gini index
+    - customize 1: change `max_trees`, max amount of random forests generated
+    - customize 2: change `maxDepth`, max depth of each random forest
+    - customize 3: change `minInstancesPerNode`, minimum distance of each subnode, currently calculated using Gini index
   - output to `data/data_prediction/`
   - run in main directory
 
-  > note: change the `Trend` in `process_join_data.py` from -1 to 0 for the model to understand it is categorical
+- `cnn_train.py`
 
-  > todo1: the indexes are messed up by cross-validation, need to fix it
+  - install anaconda
+  - install tensorflow in anaconda
+  - take input of `data/data_processed/*.csv` as training data
+    - customize 1: change `BATCH_SIZE`, number of data processed in one iteration
+    - customize 2: change `epochs`
+  - run in main directory
 
-  > todo2: need more data, current prediction is not useful since there is only one Trend
+- `lstm_train.py`
+
+  - currently using manual one-hot encoding, next: embedding text
+  - run in main directory
 
 #### Features
 
