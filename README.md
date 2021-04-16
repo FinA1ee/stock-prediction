@@ -56,35 +56,26 @@ python3 scripts/long_term_extract_stock.py 2018 2019
 run `long_term_process.py`
 
 ```
-python3 scripts/long_term_extract_stock.py [target-year]
-python3 scripts/long_term_extract_stock.py 2018
+python3 scripts/long_term_process.py [target-year]
+python3 scripts/long_term_process.py 2018
 ```
 
 - run this script to process & join data to a trainable state for `target-year`
 - in our case, just run it 3 times, with `target-year` in [2018-2020]
 - **output**: in `data/long_term_processed_{year}`
 
-#### Usage
+##### 5- Add sentiment score
 
-1. Fetch twitter data
+run  `long_term_sentiment.py`
 
-2. Fetch Stock data
+```
+python3 scripts/long_term_sentiment.py [target-year]
+python3 scripts/long_term_sentiment.py 2018
+```
 
-   see `extract_stock.py`
-
-   ```
-   python3 extract_stock.py 2021-03-01 2021-04-01
-   1d
-   ```
-
-3. Process and combine twitter data and stock data
-
-   see `process_join_data.py`
-
-   ```
-   python3 process_join_data.py 0409 
-   ```
-
+- run this script to process & join data to a trainable state for `target-year`
+- in our case, just run it 3 times, with `target-year` in [2018-2020]
+- **output**: in `data/long_term_sentiment_{year}`
    
 
 #### Scripts
