@@ -1,6 +1,8 @@
 import pyspark
 from pyspark import SparkContext
 from pyspark.sql import SparkSession
+from pyspark.sql.functions import col
+from pyspark.sql.types import *
 
 from pyspark.ml import Pipeline
 from pyspark.ml.classification import RandomForestClassifier
@@ -18,7 +20,7 @@ spark = SparkSession \
     .appName("Stock Price SparkSession") \
     .getOrCreate()
 
-df = spark.read.csv("data/data_processed/*.csv", header=True, inferSchema=True)
+df = spark.read.csv("data/data_processed_0412/*.csv", header=True, inferSchema=True)
 df.cache()
 df.printSchema()
 
@@ -46,13 +48,27 @@ df.printSchema()
 # stages += [assembler]
 
 # data preparation
+# fielddef = {'id': 'long', \
+#      'body': 'string', 'comment_num': 'integer', 'retweet_num': 'integer', 'like_num': 'integer',\
+#          'post_month': 'string', 'Trend': 'integer', 'polarity': 'double', 'subjectivity': 'double'}
+# fielddef = {'retweet_num': 'integer', 'like_num': 'integer',\
+#         'comment_num': 'integer', 'Trend': 'integer', 'polarity': 'double', 'subjectivity': 'double'}
+# df = df.select([col(c).cast(fielddef[c]) for c in fielddef.keys] ++ [column for column in df.columns if column.startsWith('ht')])
+
+numericCols = ['favorite_count', 'retweet_count', 'author_followers_count', 'author_listed_count', \
+    'author_statuses_count', 'author_friends_count', 'author_favourites_count', 'sentiment_polarity', 'sentiment_subjectivity']
+# numericCols = ['comment_num', 'retweet_num', 'like_num', 'polarity', 'subjectivity']
+hashtagCols = [column for column in df.columns if (column[0] == 'h' and column[1] == 't')]
+numericCols.extend(hashtagCols)
+
+df.select(numericCols)
+df.cache()
+df.printSchema()
 train, test = df.randomSplit([0.7, 0.3], seed = 123)
 print("Training Dataset Count: " + str(train.count()))
 print("Test Dataset Count: " + str(test.count()))
 
-numericCols = ['favorite_count', 'retweet_count', 'author_followers_count', 'author_listed_count', \
-    'author_statuses_count', 'author_friends_count', 'author_favourites_count']
-assembler = VectorAssembler()\
+assembler = VectorAssembler(handleInvalid="skip")\
     .setInputCols(numericCols)\
     .setOutputCol("features")
 train_mod01 = assembler.transform(train)
@@ -67,14 +83,14 @@ test_mod01 = assembler.transform(test)
 test_mod02 = test_mod01.select("id","features")
 
 # train
-rfClassifer = RandomForestClassifier(labelCol = "Trend", numTrees = 3)
+rfClassifer = RandomForestClassifier(labelCol = "Trend", numTrees = 10)
 pipeline = Pipeline(stages = [rfClassifer])
 paramGrid = ParamGridBuilder()\
-   .addGrid(rfClassifer.maxDepth, [1, 2, 4])\
-   .addGrid(rfClassifer.minInstancesPerNode, [1, 2, 4])\
+   .addGrid(rfClassifer.maxDepth, [1, 2, 4, 8, 10, 12, 14, 16])\
+   .addGrid(rfClassifer.minInstancesPerNode, [1, 2])\
    .build()
 evaluator = MulticlassClassificationEvaluator(labelCol = "Trend", predictionCol = "prediction", metricName = "accuracy")
-# 10 folds cv
+# 5 folds cv
 crossval = CrossValidator(estimator = pipeline,
                           estimatorParamMaps = paramGrid,
                           evaluator = evaluator,
@@ -84,7 +100,7 @@ cvModel = crossval.fit(train_mod02)
 print("best cv prediction accuracy by all 'paramGrid' metrics")
 print(cvModel.avgMetrics)
 
-# predict (this part should be prediction on the "actual" test data, instead of all data for now (since we do not have test data yet))
+# predict
 prediction = cvModel.transform(all_mod02)
 print("first few lines of prediction...")
 print(prediction.limit(5).toPandas())
