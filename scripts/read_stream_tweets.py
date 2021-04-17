@@ -71,13 +71,6 @@ if __name__ == '__main__':
         if row['group'] == 'Smileys & Emotion' or row['group'] == 'Travel & Places':
             emoji_dict[row['emoji']] = row['sub_group']
 
-    def getSentimentScore(content):
-        testimonial = TextBlob(content)
-        return {
-            'Polar': round(testimonial.sentiment.polarity, 3), 
-            'Subject': round(testimonial.sentiment.subjectivity, 3)
-        }
-
     def getEmojiScore(content):
         # emoji_lst = emoji_str.join(emojis.get(content))
         emoji_lst = list(emojis.get(content))
@@ -92,6 +85,13 @@ if __name__ == '__main__':
                     if str(emoji_dict[emoji]) == e: score -= 1 
         return score
 
+    def getSentimentScore(content):
+        testimonial = TextBlob(content)
+        return {
+            'Polar': round(testimonial.sentiment.polarity, 3), 
+            'Subject': round(testimonial.sentiment.subjectivity, 3)
+        }
+    
     tweet_dict = {}
     # tweet_dict[''] = []
     tweet_dict['truncated'] = []
