@@ -61,6 +61,8 @@ if __name__ == '__main__':
     auth.set_access_token(access_token, access_token_secret)
     stream = Stream(auth, l, tweet_mode='extended')
 
+    keywords = ['teala', 'spacex', 'elon', 'musk']
+
     # filter on key words
     try:
         stream.filter(track=keywords, is_async=True)
